@@ -10,13 +10,13 @@ function App() {
   const minusBottonHandler = () => {
     // const newMinusCount = count - 1;
     // setCount(newMinusCount);
-    dispatch(plusNumber(1));
+    dispatch(minusNumber(1));
   };
 
   const plusBottonHandler = () => {
     // const newPlusCount = count + 1;
     // setCount(newPlusCount);
-    dispatch(minusNumber(1));
+    dispatch(plusNumber(1));
   };
 
   return (
