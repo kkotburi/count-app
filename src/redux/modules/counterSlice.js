@@ -1,13 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+// 2개의 INPUT
+// (1) 이름 : 의미는 크게 없음
+// (2) 함수
+export const __plusNumber = createAsyncThunk('PLUS_NUMBER_WAIT', (payload, thunkAPI) => {
+  // 수행하고 싶은 동작 : 3초를 기다리게 할 예정
+  setTimeout(() => {
+    thunkAPI.dispatch(plusNumber(payload));
+  }, 3000);
+});
+
+export const __minusNumber = createAsyncThunk('MINUS_NUMBER_WAIT', (payload, thunkAPI) => {
+  // 수행하고 싶은 동작 : 3초를 기다리게 할 예정
+  setTimeout(() => {
+    thunkAPI.dispatch(minusNumber(payload));
+  }, 3000);
+});
 
 // Action Value
-const ADD_NUMBER = 'ADD_NUMBER';
+const PLUS_NUMBER = 'PLUS_NUMBER';
 const MINUS_NUMBER = 'MINUS_NUMBER';
 
 // Action Creator
 // export const plusNumber = (payload) => {
 //   return {
-//     type: ADD_NUMBER,
+//     type: PLUS_NUMBER,
 //     payload
 //   };
 // };
@@ -27,7 +44,7 @@ const initialState = {
 // Reducer
 // const counter = (state = initialState, action) => {
 //   switch (action.type) {
-//     case ADD_NUMBER:
+//     case PLUS_NUMBER:
 //       return {
 //         number: state.number + action.payload
 //       };

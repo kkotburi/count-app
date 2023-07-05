@@ -1,27 +1,35 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { minusNumber, plusNumber } from './redux/modules/counter';
+import { __minusNumber, __plusNumber, minusNumber, plusNumber } from './redux/modules/counterSlice';
 
 function App() {
   // const [count, setCount] = useState(0);
-  const number = useSelector((state) => state.counter.number);
+  const globalnumber = useSelector((state) => state.counter.number);
+  const [number, setNumber] = useState(0);
+
   const dispatch = useDispatch();
 
   const minusBottonHandler = () => {
     // const newMinusCount = count - 1;
     // setCount(newMinusCount);
-    dispatch(minusNumber(1));
+    dispatch(__minusNumber(+number));
   };
 
   const plusBottonHandler = () => {
     // const newPlusCount = count + 1;
     // setCount(newPlusCount);
-    dispatch(plusNumber(1));
+    dispatch(__plusNumber(+number));
   };
 
   return (
     <div>
-      <div>{number}</div>
+      <div>{globalnumber}</div>
+      <input
+        type="number"
+        onChange={(event) => {
+          setNumber(event.target.value);
+        }}
+      />
       <div>
         <button onClick={minusBottonHandler}>-</button>
         <button onClick={plusBottonHandler}>+</button>
